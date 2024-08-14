@@ -1,3 +1,7 @@
+/build
+*.o
+.clang-format
+
 # Prerequisites
 *.d
 
