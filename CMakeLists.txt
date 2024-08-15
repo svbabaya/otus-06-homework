@@ -4,14 +4,14 @@ project(container_project)
 
 add_executable(container src/main.cpp)
 
-add_executable((test test/main.cpp))
+add_executable(control control/main.cpp)
 
 set_target_properties(container 
 PROPERTIES 
     CXX_STANDARD 17 
     CXX_STANDARD_REQUIRED ON)
 
-set_target_properties(test
+set_target_properties(control
 PROPERTIES 
     CXX_STANDARD 17 
     CXX_STANDARD_REQUIRED ON)
