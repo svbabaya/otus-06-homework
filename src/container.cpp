@@ -58,3 +58,13 @@ size_t SequentalContainer::size() const
 {
         return m_size;
 }
+
+void SequentalContainer::show() const 
+{
+    for (size_t i = 0; i < m_size; i++) {
+        std::cout << m_arr[i];
+        if (i < m_size) {
+            std::cout << ', ';
+        }
+    }
+}

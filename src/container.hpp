@@ -10,6 +10,7 @@ public:
     virtual int get(const size_t pos) const = 0;
     virtual int operator[](const size_t pos) const = 0;
     virtual size_t size() const = 0;
+    virtual void show() const = 0;
 
 };
 
@@ -24,12 +25,13 @@ public:
     int get(const size_t pos) const override;
     int operator[](const size_t pos) const override;
     size_t size() const override;
-    
-    int * m_arr;
+    void show() const override;
+    // void sort();
+    // voide reverse();
 
 private:
+    int * m_arr;
     size_t m_size;
-
 };
 
 class ConnectedContainer : public Container
