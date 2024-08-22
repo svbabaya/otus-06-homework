@@ -4,29 +4,31 @@
 class Container 
 {
 public:
-    Container();
-    ~Container();
-    virtual bool push_back(const int el) = 0;
-    virtual bool insert(const int el) = 0;
-    virtual bool erase(const size_t pos) = 0;
-    virtual bool get(const size_t pos, int & out) const = 0;
+    virtual void push_back(const int el) = 0;
+    virtual void insert(const int el) = 0;
+    virtual void erase(const size_t pos) = 0;
+    virtual int get(const size_t pos) const = 0;
     virtual int operator[](const size_t pos) const = 0;
-    size_t size() const 
-    {
-        return m_size;
-    }
+    virtual size_t size() const = 0;
 
-private:
-    size_t m_size;
-    int * ptr;
 };
 
 class SequentalContainer : public Container
 {
 public:
-    SequentalContainer() {};
+    SequentalContainer();
+    ~SequentalContainer();
+    void push_back(const int el) override;
+    void insert(const int el) override;
+    void erase(const size_t pos) override;
+    int get(const size_t pos) const override;
+    int operator[](const size_t pos) const override;
+    size_t size() const override;
+    
+    int * m_arr;
 
-private: 
+private:
+    size_t m_size;
 
 };
 

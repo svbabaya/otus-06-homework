@@ -2,26 +2,59 @@
 
 #include <iostream>
 
-Container::Container() : m_size(0) {
-    ptr = new int[0];
+SequentalContainer::SequentalContainer() : m_size(0) {
+    m_arr = new int[0];
+    std::cout << "Container is made\n";
 }
 
-Container::~Container() {
-    delete [] ptr;
+SequentalContainer::~SequentalContainer() {
+    delete [] m_arr;
+    std::cout << "Container is deleted\n";
 }
 
-bool Container::push_back(const int el) 
-{
-    bool status = true;
-    
-    m_size++;
-    int * tmp_ptr = new int[m_size];
-    for (size_t i = 0; i < m_size - 1; i++) {
-        tmp_ptr[i] = ptr[i];
+void SequentalContainer::push_back(const int el) 
+{   
+    int * tmp_arr = new int[m_size + 1];
+    for (size_t i = 0; i < m_size; i++) 
+    {
+        tmp_arr[i] = m_arr[i];
     }
-    tmp_ptr[m_size] = el;
-    ptr = tmp_ptr;
-    delete [] tmp_ptr;
+    tmp_arr[m_size] = el;
+    delete [] m_arr;
+    m_arr = tmp_arr;
+    m_size++;
 
-    return status;
+    std::cout << "One element is added\n";
+}
+
+void SequentalContainer::insert(const int el) 
+{
+    // TODO
+}
+
+void SequentalContainer::erase(const size_t pos) 
+{
+    // TODO
+}
+
+int SequentalContainer::get(const size_t pos) const
+{
+    if (pos >= m_size) 
+    {
+        std::cout << "Wrong position" << '\n';
+        return 0;
+    } else 
+    {
+        return m_arr[pos];
+    }
+}
+
+int SequentalContainer::operator[](const size_t pos) const
+{
+    return m_arr[pos];
+}
+
+size_t SequentalContainer::size() const 
+{
+        return m_size;
 }
