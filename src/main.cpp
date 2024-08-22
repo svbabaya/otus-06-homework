@@ -1,7 +1,8 @@
 #include <iostream>
 
 template <typename T>
-class Container {
+class Container 
+{
 public:
     Container() : m_size(0) {}
     bool push_back(const T & t) = 0;
@@ -19,7 +20,8 @@ private:
 };
 
 template <typename T>
-class SequentalContainer : public Container<T> {
+class SequentalContainer : public Container<T> 
+{
 public:
     SequentalContainer() {}
 
@@ -28,7 +30,8 @@ private:
 };
 
 template <typename T>
-class ConnectedContainer : public Container<T> {
+class ConnectedContainer : public Container<T> 
+{
 public:
     ConnectedContainer() {}
 
@@ -36,10 +39,8 @@ private:
 
 };
 
-
-
-int main(int argc, char * argv[]) {
-
+int main(int argc, char * argv[]) 
+{
 
     return EXIT_SUCCESS;
 }
