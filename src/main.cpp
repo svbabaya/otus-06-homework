@@ -50,18 +50,15 @@ int main(int argc, char * argv[])
     l_cont.show();
     std::cout << "Size of l_cont: " << l_cont.size() << '\n';
 
-     // tasks 5-6
+    // tasks 5-6
     const std::vector<size_t> positions2 = {3, 5, 7};
-    int i = 0;
+    int j = 0;
     for (int el : positions2) 
     {
-        i++;
-        l_cont.erase(el - i);
+        l_cont.erase(el - j);
+        j++;
     }
     l_cont.show();
-
-
-
 
 
     return EXIT_SUCCESS;

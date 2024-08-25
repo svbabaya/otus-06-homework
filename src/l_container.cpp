@@ -50,6 +50,27 @@ bool LinkedContainer::insert(const int el, const size_t pos)
 
 bool LinkedContainer::erase(const size_t pos) 
 {
+    size_t count = 1;
+    Node *n_tmp, *prev_tmp, *next_tmp;
+    n_tmp = m_first;
+    while (n_tmp != nullptr) {
+        if (count == pos)
+        {
+            break;
+        } 
+        n_tmp = n_tmp->next;
+        count++;
+    }
+
+    prev_tmp = n_tmp->prev;
+    next_tmp = n_tmp->next;
+    prev_tmp->next = next_tmp;
+    next_tmp->prev = prev_tmp;
+
+    delete n_tmp;
+
+    // std::cout << "n_tmp->data=" << n_tmp->data << '\n';
+
     return true;
 }
 
@@ -66,7 +87,7 @@ int LinkedContainer::operator[](const size_t pos) const
 void LinkedContainer::show() const 
 {
     std::cout << "Show l_cont: ";
-    Node * n_tmp = new Node{};
+    Node * n_tmp;
     n_tmp = m_first;
     //std::cout << "m_first = " << m_first << '\n';
     //std::cout << "n_tmp = " << n_tmp << '\n'; 
@@ -84,7 +105,6 @@ void LinkedContainer::show() const
         } 
         std::cout << ", ";
     }
-    delete n_tmp;
     std::cout << '\n';
 }
     
