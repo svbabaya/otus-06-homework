@@ -21,6 +21,7 @@ private:
         Node * prev;
         int data;
     };
-    Node * head;
-    Node * tail;
+    Node * m_first;
+    Node * m_last;
+
 };
