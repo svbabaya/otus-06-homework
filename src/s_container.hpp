@@ -5,7 +5,6 @@ class SequentalContainer : public IContainer
 {
 public:
     SequentalContainer();
-    ~SequentalContainer();
     void push_back(const int el) override;
     bool insert(const int el, const size_t pos) override;
     bool erase(const size_t pos) override;

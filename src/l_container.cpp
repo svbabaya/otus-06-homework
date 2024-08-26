@@ -3,12 +3,7 @@
 
 LinkedContainer::LinkedContainer() : m_size(0), m_first(nullptr), m_last(nullptr)
 {
-    // std::cout << "Container is made\n";
-}
-
-LinkedContainer::~LinkedContainer() 
-{
-    // std::cout << "Container is deleted\n";
+    // std::cout << "Container linked is made\n";
 }
 
 void LinkedContainer::push_back(const int el) 
@@ -79,11 +74,13 @@ bool LinkedContainer::erase(const size_t pos)
         return false;
     }
     
-    Node *n_tmp, *prev_tmp, *next_tmp;
+    Node *prev_tmp, *next_tmp;
 
+    // find node on position pos
+    Node *n_tmp;
     size_t index = 0;
     n_tmp = m_first;
-    while (n_tmp != nullptr) {
+    while (n_tmp->next != nullptr) {
         if (index == pos)
         {
             break;

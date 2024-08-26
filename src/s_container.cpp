@@ -4,13 +4,7 @@
 SequentalContainer::SequentalContainer() : m_size(0) 
 {
     m_arr = new int[0];
-    // std::cout << "Container is made\n";
-}
-
-SequentalContainer::~SequentalContainer() 
-{
-    delete [] m_arr;
-    // std::cout << "Container is deleted\n";
+    // std::cout << "Container sequental is made\n";
 }
 
 void SequentalContainer::push_back(const int el) 
