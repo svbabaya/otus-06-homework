@@ -34,27 +34,16 @@ bool LinkedContainer::insert(const int el, const size_t pos)
     }
     
     // find node on position pos
-    Node *n_tmp;
-    size_t index = 0;
-    n_tmp = m_first;
-    while (n_tmp->next != nullptr) 
-    {
-        if (index == pos)
-        {
-            break;
-        } 
-        n_tmp = n_tmp->next;
-        index++;
-    }
+    Node * n_tmp = search(pos, n_tmp);
 
     Node *prev_tmp;
-    Node * new_node = new Node{};
+    Node *new_node = new Node{};
 
     prev_tmp = n_tmp->prev;
     new_node->prev = prev_tmp;
     new_node->next = n_tmp;
     n_tmp->prev = new_node;
-    if (index == 0) 
+    if (pos == 0) 
     {
         m_first = new_node;
     } else 
@@ -77,17 +66,7 @@ bool LinkedContainer::erase(const size_t pos)
     Node *prev_tmp, *next_tmp;
 
     // find node on position pos
-    Node *n_tmp;
-    size_t index = 0;
-    n_tmp = m_first;
-    while (n_tmp->next != nullptr) {
-        if (index == pos)
-        {
-            break;
-        } 
-        n_tmp = n_tmp->next;
-        index++;
-    }
+    Node * n_tmp = search(pos, n_tmp);
 
     prev_tmp = n_tmp->prev;
     next_tmp = n_tmp->next;
@@ -108,18 +87,7 @@ int LinkedContainer::get(const size_t pos) const
     }
 
     // find node on position pos
-    Node *n_tmp;
-    size_t index = 0;
-    n_tmp = m_first;
-    while (n_tmp->next != nullptr) 
-    {
-        if (index == pos)
-        {
-            break;
-        } 
-        n_tmp = n_tmp->next;
-        index++;
-    }
+    Node * n_tmp = search(pos, n_tmp);
 
     return n_tmp->data;
 }
@@ -133,18 +101,7 @@ int LinkedContainer::operator[](const size_t pos) const
     }
 
     // find node on position pos
-    Node *n_tmp;
-    size_t index = 0;
-    n_tmp = m_first;
-    while (n_tmp->next != nullptr) 
-    {
-        if (index == pos)
-        {
-            break;
-        } 
-        n_tmp = n_tmp->next;
-        index++;
-    }
+    Node * n_tmp = search(pos, n_tmp);
 
     return n_tmp->data;
 }
@@ -170,4 +127,20 @@ void LinkedContainer::show() const
 size_t LinkedContainer::size() const 
 {
     return m_size;
+}
+
+LinkedContainer::Node * LinkedContainer::search(const size_t pos, Node * n) const
+{
+    size_t index = 0;
+    n = m_first;
+    while (n->next != nullptr) 
+    {
+        if (index == pos)
+        {
+            break;
+        } 
+        n = n->next;
+        index++;
+    }
+    return n;
 }

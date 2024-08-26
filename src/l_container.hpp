@@ -22,5 +22,6 @@ private:
     };
     Node * m_first;
     Node * m_last;
+    Node * search(const size_t pos, Node * n) const;
 
 };
