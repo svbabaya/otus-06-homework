@@ -28,11 +28,17 @@ int main(int argc, char * argv[])
     s_cont.show();
 
     // task 7-8
-    s_cont.insert(10, 0);
+    if (!s_cont.insert(10, 0)) 
+    {
+        std::cout << "Too large value of position\n";
+    }
     s_cont.show();
 
     // task 9-10
-    s_cont.insert(20, 4);
+    if (!s_cont.insert(20, 4)) 
+    {
+        std::cout << "Too large value of position\n";
+    }
     s_cont.show();
 
     // task 11-12
@@ -55,11 +61,44 @@ int main(int argc, char * argv[])
     int j = 0;
     for (int el : positions2) 
     {
-        l_cont.erase(el - j);
         j++;
+        l_cont.erase(el - j);
     }
     l_cont.show();
 
+    // task 7-8
+    if (!l_cont.insert(10, 0)) 
+    {
+        std::cout << "Too large value of position\n";
+    }
+    l_cont.show();
+
+    // task 9-10
+    if (!l_cont.insert(20, 4)) 
+    {
+        std::cout << "Too large value of position\n";
+    }
+    l_cont.show();
+
+    // task 11-12
+    l_cont.push_back(30);
+    l_cont.show();
+
+    // std::cout << l_cont.get(5) << '\n';
+    // std::cout << l_cont[5] << '\n';
 
     return EXIT_SUCCESS;
 }
+
+// int main(int argc, char * argv[]) 
+// {
+//     std::cout << "\nSequental container:\n";
+//     SequentalContainer s_cont;
+//     void test (s_cont);
+//     std::cout << '\n';
+//     std::cout << "\nLinked container:\n";
+//     LinkedContainer l_cont;
+//     void test (l_cont);
+
+//     return EXIT_SUCCESS;
+// }

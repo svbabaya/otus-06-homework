@@ -29,7 +29,7 @@ void SequentalContainer::push_back(const int el)
 
 bool SequentalContainer::insert(const int el, const size_t pos) 
 {   
-    if (pos > m_size) 
+    if (pos > m_size - 1) 
     {
         return false;
     }
@@ -81,12 +81,22 @@ bool SequentalContainer::erase(const size_t pos)
 }
 
 int SequentalContainer::get(const size_t pos) const
-{
+{   
+    if (pos > m_size - 1) 
+    {
+        std::cout << "Too large value of position\n";
+        return -1;
+    }
     return m_arr[pos];
 }
 
 int SequentalContainer::operator[](const size_t pos) const
 {
+    if (pos > m_size - 1) 
+    {
+        std::cout << "Too large value of position\n";
+        return -1;
+    }
     return m_arr[pos];
 }
 
