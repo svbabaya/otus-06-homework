@@ -1,10 +1,10 @@
 #include "l_container.hpp"
-// #include <iostream>
+#include "outofrangeexception.hpp"
 
 template <typename T>
 void LinkedContainer<T>::push_back(const T el) 
 {   
-    Node * new_node = new Node{};
+    Node* new_node = new Node{};
     if (m_size == 0) 
     {
         m_first = new_node;
@@ -23,18 +23,18 @@ void LinkedContainer<T>::push_back(const T el)
 }
 
 template <typename T>
-bool LinkedContainer<T>::insert(const T el, const size_t pos)
+void LinkedContainer<T>::insert(const T el, const size_t pos)
 {
     if (pos > m_size - 1) 
     {
-        return false;
+        throw OutOfRangeException("Position is out of range, use push_back() to add data!");
     }
     
     // find node on position pos
-    Node * n_tmp = search(pos, n_tmp);
+    Node* n_tmp = search(pos, n_tmp);
 
-    Node *prev_tmp;
-    Node *new_node = new Node{};
+    Node* prev_tmp;
+    Node* new_node = new Node{};
 
     prev_tmp = n_tmp->prev;
     new_node->prev = prev_tmp;
@@ -50,21 +50,20 @@ bool LinkedContainer<T>::insert(const T el, const size_t pos)
 
     new_node->data = el;
     m_size += 1;
-    return true;
 }
 
 template <typename T>
-bool LinkedContainer<T>::erase(const size_t pos) 
+void LinkedContainer<T>::erase(const size_t pos) 
 {
     if (pos > m_size - 1) 
     {
-        return false;
+        throw OutOfRangeException("Position is out of range!");
     }
     
-    Node *prev_tmp, *next_tmp;
+    Node* prev_tmp, *next_tmp;
 
     // find node on position pos
-    Node * n_tmp = search(pos, n_tmp);
+    Node* n_tmp = search(pos, n_tmp);
 
     prev_tmp = n_tmp->prev;
     next_tmp = n_tmp->next;
@@ -73,35 +72,32 @@ bool LinkedContainer<T>::erase(const size_t pos)
 
     m_size -= 1;
     delete n_tmp;
-    return true;
 }
 
 template <typename T>
-int LinkedContainer<T>::get(const size_t pos) const 
+T LinkedContainer<T>::get(const size_t pos) const 
 {
     if (pos > m_size - 1) 
     {
-        std::cout << "Too large value of position\n";
-        return -1;
+        throw OutOfRangeException("Position is out of range!");
     }
 
     // find node on position pos
-    Node * n_tmp = search(pos, n_tmp);
+    Node* n_tmp = search(pos, n_tmp);
 
     return n_tmp->data;
 }
 
 template <typename T>  
-int LinkedContainer<T>::operator[](const size_t pos) const 
+T LinkedContainer<T>::operator[](const size_t pos) const 
 {
     if (pos > m_size - 1) 
     {
-        std::cout << "Too large value of position\n";
-        return -1;
+        throw OutOfRangeException("Position is out of range!");
     }
 
     // find node on position pos
-    Node * n_tmp = search(pos, n_tmp);
+    Node* n_tmp = search(pos, n_tmp);
 
     return n_tmp->data;
 }
@@ -110,7 +106,7 @@ template <typename T>
 void LinkedContainer<T>::show() const 
 {
     std::cout << "Show l_cont: ";
-    Node * n_tmp;
+    Node* n_tmp;
     n_tmp = m_first;
     while (n_tmp != nullptr) 
     {
@@ -126,18 +122,18 @@ void LinkedContainer<T>::show() const
 }
 
 template <typename T>
-LinkedContainer<T>::Node* LinkedContainer<T>::search(const size_t pos, Node* n) const
+typename LinkedContainer<T>::Node* LinkedContainer<T>::search(const size_t pos, Node* n_ptr) const
 {
     size_t index = 0;
-    n = m_first;
-    while (n->next != nullptr) 
+    n_ptr = m_first;
+    while (n_ptr->next != nullptr) 
     {
         if (index == pos)
         {
             break;
         } 
-        n = n->next;
+        n_ptr = n_ptr->next;
         index++;
     }
-    return n;
+    return n_ptr;
 }

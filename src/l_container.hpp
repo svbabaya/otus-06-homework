@@ -8,18 +8,20 @@ class LinkedContainer
 public:
     LinkedContainer() : m_size{0}, m_first{nullptr}, m_last{nullptr}  
     {
-        std::cout << "Container linked is made\n";
+        std::cout << "Linked container is made\n";
     }
     ~LinkedContainer() 
     {
-        std::cout << "Container linked is deleted\n";
+        // TODO delete heap
+        // std::cout << "Heap's data of linked container is deleted\n";
+        std::cout << "Linked container is deleted\n";
     }
 
     void push_back(const T el);
-    bool insert(const T el, const size_t pos);
-    bool erase(const size_t pos);
-    int get(const size_t pos) const;
-    int operator[](const size_t pos) const;
+    void insert(const T el, const size_t pos);
+    void erase(const size_t pos);
+    T get(const size_t pos) const;
+    T operator[](const size_t pos) const;
     void show() const;
 
     size_t size() const 

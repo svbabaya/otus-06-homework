@@ -1,5 +1,5 @@
 #include "s_container.hpp"
-// #include <iostream>
+#include "outofrangeexception.hpp"
 
 template <typename T>
 void SequentalContainer<T>::push_back(const T el)
@@ -16,12 +16,13 @@ void SequentalContainer<T>::push_back(const T el)
 }
 
 template <typename T>
-bool SequentalContainer<T>::insert(const T el, const size_t pos) 
+void SequentalContainer<T>::insert(const T el, const size_t pos) 
 {   
     if (pos > m_size - 1) 
     {
-        return false;
+        throw OutOfRangeException("Position is out of range!");
     }
+
     T* tmp_arr = new T[m_size + 1];
     for (size_t i = 0; i < m_size + 1; i++)
      {
@@ -41,15 +42,14 @@ bool SequentalContainer<T>::insert(const T el, const size_t pos)
     m_arr = tmp_arr;
     m_size += 1;
 
-    return true;
 }
 
 template <typename T>
-bool SequentalContainer<T>::erase(const size_t pos) 
+void SequentalContainer<T>::erase(const size_t pos) 
 {
     if (pos >= m_size) 
     {
-        return false;
+        throw OutOfRangeException("Position is out of range!");
     }
     T* tmp_arr = new T[m_size - 1];
     for (size_t i = 0; i < m_size - 1; i++) 
@@ -67,7 +67,6 @@ bool SequentalContainer<T>::erase(const size_t pos)
     m_arr = tmp_arr;
     m_size -= 1;
 
-    return true;
 }
 
 template <typename T>
@@ -75,8 +74,7 @@ T SequentalContainer<T>::get(const size_t pos) const
 {   
     if (pos > m_size - 1) 
     {
-        std::cout << "Too large value of position\n";
-        return -1;
+        throw OutOfRangeException("Position is out of range!");
     }
     return m_arr[pos];
 }
@@ -86,8 +84,7 @@ T SequentalContainer<T>::operator[](const size_t pos) const
 {
     if (pos > m_size - 1) 
     {
-        std::cout << "Too large value of position\n";
-        return -1;
+        throw OutOfRangeException("Position is out of range!");
     }
     return m_arr[pos];
 }

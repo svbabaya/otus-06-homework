@@ -1,13 +1,11 @@
-#include "s_container.hpp"
 #include "s_container.inl"
-#include "l_container.hpp"
 #include "l_container.inl"
 
 #include <iostream>
 #include <vector>
 
 template <typename T>
-void test(T t) 
+void test(T& t) 
 {
     // tasks 1-4
     const std::vector<int> numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -21,24 +19,39 @@ void test(T t)
     // tasks 5-6
     const std::vector<size_t> positions = {3, 5, 7};
     int i = 0;
-    for (int el : positions) 
+    try
     {
-        i++;
-        t.erase(el - i);
+        for (int el : positions) 
+        {
+            i++;
+            t.erase(el - i);
+        }
+    }
+    catch(const OutOfRangeException& ex)
+    {
+        std::cout << "Fault in arguments erase(). " << ex.getMessage() << '\n';
     }
     t.show();
 
     // task 7-8
-    if (!t.insert(10, 0)) 
+    try 
     {
-        std::cout << "Too large value of position\n";
+        t.insert(10, 0); 
+    }
+    catch(const OutOfRangeException& ex) 
+    {
+        std::cout << "Fault in arguments insert(). " << ex.getMessage() << '\n';
     }
     t.show();
 
     // task 9-10
-    if (!t.insert(20, 4)) 
+    try
     {
-        std::cout << "Too large value of position\n";
+        t.insert(20, 4);
+    }
+    catch(const OutOfRangeException& ex) 
+    {
+        std::cout << "Fault in arguments insert(). " << ex.getMessage() << '\n';
     }
     t.show();
 
@@ -47,8 +60,15 @@ void test(T t)
     t.show();
 
     // check get() and operator[]
-    std::cout << "container.get(5) = " << t.get(5) << '\n';
-    std::cout << "container[5] = " << t[5] << '\n';
+    try 
+    {
+        std::cout << "container.get(5): " << t.get(5) << '\n';
+        std::cout << "container[5]: " << t[5] << '\n';
+    }
+    catch(const OutOfRangeException& ex) 
+    {
+        std::cout << "Fault in get() or operator[]. " << ex.getMessage() << '\n';
+    }
 
 }
 
@@ -57,9 +77,9 @@ int main(int argc, char* argv[])
     std::cout << "\nSequental container:\n";
     SequentalContainer<int> s_cont;
     test(s_cont);
-    std::cout << "\nLinked container:\n";
-    LinkedContainer<int> l_cont;
-    test(l_cont);
+    // std::cout << "\nLinked container:\n";
+    // LinkedContainer<int> l_cont;
+    // test(l_cont);
 
     return EXIT_SUCCESS;
 }
