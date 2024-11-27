@@ -1,12 +1,8 @@
 #include "l_container.hpp"
-#include <iostream>
+// #include <iostream>
 
-LinkedContainer::LinkedContainer() : m_size(0), m_first(nullptr), m_last(nullptr)
-{
-    // std::cout << "Container linked is made\n";
-}
-
-void LinkedContainer::push_back(const int el) 
+template <typename T>
+void LinkedContainer<T>::push_back(const T el) 
 {   
     Node * new_node = new Node{};
     if (m_size == 0) 
@@ -26,7 +22,8 @@ void LinkedContainer::push_back(const int el)
         m_size += 1;
 }
 
-bool LinkedContainer::insert(const int el, const size_t pos)
+template <typename T>
+bool LinkedContainer<T>::insert(const T el, const size_t pos)
 {
     if (pos > m_size - 1) 
     {
@@ -56,7 +53,8 @@ bool LinkedContainer::insert(const int el, const size_t pos)
     return true;
 }
 
-bool LinkedContainer::erase(const size_t pos) 
+template <typename T>
+bool LinkedContainer<T>::erase(const size_t pos) 
 {
     if (pos > m_size - 1) 
     {
@@ -78,21 +76,8 @@ bool LinkedContainer::erase(const size_t pos)
     return true;
 }
 
-int LinkedContainer::get(const size_t pos) const 
-{
-    if (pos > m_size - 1) 
-    {
-        std::cout << "Too large value of position\n";
-        return -1;
-    }
-
-    // find node on position pos
-    Node * n_tmp = search(pos, n_tmp);
-
-    return n_tmp->data;
-}
-    
-int LinkedContainer::operator[](const size_t pos) const 
+template <typename T>
+int LinkedContainer<T>::get(const size_t pos) const 
 {
     if (pos > m_size - 1) 
     {
@@ -106,7 +91,23 @@ int LinkedContainer::operator[](const size_t pos) const
     return n_tmp->data;
 }
 
-void LinkedContainer::show() const 
+template <typename T>  
+int LinkedContainer<T>::operator[](const size_t pos) const 
+{
+    if (pos > m_size - 1) 
+    {
+        std::cout << "Too large value of position\n";
+        return -1;
+    }
+
+    // find node on position pos
+    Node * n_tmp = search(pos, n_tmp);
+
+    return n_tmp->data;
+}
+
+template <typename T>
+void LinkedContainer<T>::show() const 
 {
     std::cout << "Show l_cont: ";
     Node * n_tmp;
@@ -123,13 +124,9 @@ void LinkedContainer::show() const
     }
     std::cout << '\n';
 }
-    
-size_t LinkedContainer::size() const 
-{
-    return m_size;
-}
 
-LinkedContainer::Node * LinkedContainer::search(const size_t pos, Node * n) const
+template <typename T>
+LinkedContainer<T>::Node* LinkedContainer<T>::search(const size_t pos, Node* n) const
 {
     size_t index = 0;
     n = m_first;

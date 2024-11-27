@@ -1,5 +1,7 @@
 #include "s_container.hpp"
+#include "s_container.inl"
 #include "l_container.hpp"
+#include "l_container.inl"
 
 #include <iostream>
 #include <vector>
@@ -44,18 +46,19 @@ void test(T t)
     t.push_back(30);
     t.show();
 
-    // std::cout << t.get(5) << '\n';
-    // std::cout << t[5] << '\n';
+    // check get() and operator[]
+    std::cout << "container.get(5) = " << t.get(5) << '\n';
+    std::cout << "container[5] = " << t[5] << '\n';
 
 }
 
-int main(int argc, char * argv[]) 
+int main(int argc, char* argv[]) 
 {
     std::cout << "\nSequental container:\n";
-    SequentalContainer s_cont;
+    SequentalContainer<int> s_cont;
     test(s_cont);
     std::cout << "\nLinked container:\n";
-    LinkedContainer l_cont;
+    LinkedContainer<int> l_cont;
     test(l_cont);
 
     return EXIT_SUCCESS;

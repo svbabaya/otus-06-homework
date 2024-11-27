@@ -1,15 +1,10 @@
 #include "s_container.hpp"
-#include <iostream>
+// #include <iostream>
 
-SequentalContainer::SequentalContainer() : m_size(0) 
-{
-    m_arr = new int[0];
-    // std::cout << "Container sequental is made\n";
-}
-
-void SequentalContainer::push_back(const int el) 
+template <typename T>
+void SequentalContainer<T>::push_back(const T el)
 {   
-    int * tmp_arr = new int[m_size + 1];
+    T* tmp_arr = new T[m_size + 1];
     for (size_t i = 0; i < m_size; i++) 
     {
         tmp_arr[i] = m_arr[i];
@@ -18,16 +13,16 @@ void SequentalContainer::push_back(const int el)
     delete [] m_arr;
     m_arr = tmp_arr;
     m_size += 1;
-    // std::cout << "One element is added\n";
 }
 
-bool SequentalContainer::insert(const int el, const size_t pos) 
+template <typename T>
+bool SequentalContainer<T>::insert(const T el, const size_t pos) 
 {   
     if (pos > m_size - 1) 
     {
         return false;
     }
-    int * tmp_arr = new int[m_size + 1];
+    T* tmp_arr = new T[m_size + 1];
     for (size_t i = 0; i < m_size + 1; i++)
      {
         if (i < pos) 
@@ -49,13 +44,14 @@ bool SequentalContainer::insert(const int el, const size_t pos)
     return true;
 }
 
-bool SequentalContainer::erase(const size_t pos) 
+template <typename T>
+bool SequentalContainer<T>::erase(const size_t pos) 
 {
     if (pos >= m_size) 
     {
         return false;
     }
-    int * tmp_arr = new int[m_size - 1];
+    T* tmp_arr = new T[m_size - 1];
     for (size_t i = 0; i < m_size - 1; i++) 
     {   
         if (i < pos) 
@@ -74,7 +70,8 @@ bool SequentalContainer::erase(const size_t pos)
     return true;
 }
 
-int SequentalContainer::get(const size_t pos) const
+template <typename T>
+T SequentalContainer<T>::get(const size_t pos) const
 {   
     if (pos > m_size - 1) 
     {
@@ -84,7 +81,8 @@ int SequentalContainer::get(const size_t pos) const
     return m_arr[pos];
 }
 
-int SequentalContainer::operator[](const size_t pos) const
+template <typename T>
+T SequentalContainer<T>::operator[](const size_t pos) const
 {
     if (pos > m_size - 1) 
     {
@@ -94,12 +92,8 @@ int SequentalContainer::operator[](const size_t pos) const
     return m_arr[pos];
 }
 
-size_t SequentalContainer::size() const 
-{
-    return m_size;
-}
-
-void SequentalContainer::show() const 
+template <typename T>
+void SequentalContainer<T>::show() const 
 {
     std::cout << "Show s_cont: ";
     for (size_t i = 0; i < m_size; i++) 
@@ -111,4 +105,5 @@ void SequentalContainer::show() const
         }
     }
     std::cout << '\n';
+
 }
