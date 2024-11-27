@@ -80,6 +80,7 @@ int main(int argc, char* argv[])
     std::cout << "\nLinked container:\n";
     LinkedContainer<int> l_cont;
     test(l_cont);
+    std::cout << '\n';
 
     return EXIT_SUCCESS;
 }

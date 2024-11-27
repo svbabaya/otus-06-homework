@@ -1,5 +1,5 @@
 #include "s_container.hpp"
-#include "outofrangeexception.hpp"
+#include "ex_outofrange.hpp"
 
 template <typename T>
 void SequentalContainer<T>::push_back(const T el)

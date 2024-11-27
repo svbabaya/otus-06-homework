@@ -1,5 +1,5 @@
 #include "l_container.hpp"
-#include "outofrangeexception.hpp"
+#include "ex_outofrange.hpp"
 
 template <typename T>
 void LinkedContainer<T>::push_back(const T el) 
@@ -31,7 +31,7 @@ void LinkedContainer<T>::insert(const T el, const size_t pos)
     }
     
     // find node on position pos
-    Node* n_tmp = search(pos, n_tmp);
+    Node* n_tmp = search_2(pos);
 
     Node* prev_tmp;
     Node* new_node = new Node{};
@@ -64,7 +64,7 @@ void LinkedContainer<T>::erase(const size_t pos)
     Node* next_tmp;
 
     // find node on position pos
-    Node* n_tmp = search(pos, n_tmp);
+    Node* n_tmp = search_2(pos);
 
     prev_tmp = n_tmp->prev;
     next_tmp = n_tmp->next;
@@ -84,7 +84,7 @@ T LinkedContainer<T>::get(const size_t pos) const
     }
 
     // find node on position pos
-    Node* n_tmp = search(pos, n_tmp);
+    Node* n_tmp = search_2(pos);
 
     return n_tmp->data;
 }
@@ -98,7 +98,7 @@ T LinkedContainer<T>::operator[](const size_t pos) const
     }
 
     // find node on position pos
-    Node* n_tmp = search(pos, n_tmp);
+    Node* n_tmp = search_2(pos);
 
     return n_tmp->data;
 }
@@ -123,18 +123,17 @@ void LinkedContainer<T>::show() const
 }
 
 template <typename T>
-typename LinkedContainer<T>::Node* LinkedContainer<T>::search(const size_t pos, Node* n_ptr) const
+typename LinkedContainer<T>::Node* LinkedContainer<T>::search_2(const size_t pos) const
 {
     size_t index = 0;
-    n_ptr = m_first;
-    while (n_ptr->next != nullptr) 
-    {
+    Node* result_ptr = m_first;
+    while (result_ptr->next != nullptr) {
         if (index == pos)
         {
             break;
-        } 
-        n_ptr = n_ptr->next;
+        }
+        result_ptr = result_ptr->next;
         index++;
     }
-    return n_ptr;
+    return result_ptr;
 }

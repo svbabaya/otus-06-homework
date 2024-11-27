@@ -8,13 +8,23 @@ class LinkedContainer
 public:
     LinkedContainer() : m_size{0}, m_first{nullptr}, m_last{nullptr}  
     {
-        std::cout << "Linked container is made\n";
+        // std::cout << "Linked container is made\n";
     }
     ~LinkedContainer() 
     {
-        // TODO delete heap
+        // Delete heap's data
+        Node* del_ptr = m_first;
+        Node* next_node = nullptr;
+        do 
+        {
+            next_node = del_ptr->next;
+            delete del_ptr;
+            del_ptr = next_node;
+        }
+        while (del_ptr->next != nullptr);
+
         // std::cout << "Heap's data of linked container is deleted\n";
-        std::cout << "Linked container is deleted\n";
+        // std::cout << "Linked container is deleted\n";
     }
 
     void push_back(const T el);
@@ -40,6 +50,6 @@ private:
 
     Node* m_first;
     Node* m_last;
-    Node* search(const size_t pos, Node* n) const;
+    Node* search_2(const size_t pos) const;
 
 };
