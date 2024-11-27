@@ -27,7 +27,7 @@ void LinkedContainer<T>::insert(const T el, const size_t pos)
 {
     if (pos > m_size - 1) 
     {
-        throw OutOfRangeException("Position is out of range, use push_back() to add data!");
+        throw OutOfRangeException("Position is out of range!");
     }
     
     // find node on position pos
@@ -60,7 +60,8 @@ void LinkedContainer<T>::erase(const size_t pos)
         throw OutOfRangeException("Position is out of range!");
     }
     
-    Node* prev_tmp, *next_tmp;
+    Node* prev_tmp;
+    Node* next_tmp;
 
     // find node on position pos
     Node* n_tmp = search(pos, n_tmp);

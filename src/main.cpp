@@ -77,9 +77,9 @@ int main(int argc, char* argv[])
     std::cout << "\nSequental container:\n";
     SequentalContainer<int> s_cont;
     test(s_cont);
-    // std::cout << "\nLinked container:\n";
-    // LinkedContainer<int> l_cont;
-    // test(l_cont);
+    std::cout << "\nLinked container:\n";
+    LinkedContainer<int> l_cont;
+    test(l_cont);
 
     return EXIT_SUCCESS;
 }
