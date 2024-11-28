@@ -80,6 +80,24 @@ int main(int argc, char* argv[])
     std::cout << "\nLinked container:\n";
     LinkedContainer<int> l_cont;
     test(l_cont);
+
+    // Test for copy constructor
+    // SequentalContainer<int> a;
+    // a.push_back(10);
+    // a.push_back(20);
+    // a.show();
+    // SequentalContainer<int> b{a};
+    // b.show();
+
+    // Test for copy assignment operator
+    // SequentalContainer<int> c;
+    // c.push_back(30);
+    // c.push_back(40);
+    // c.show();
+    // SequentalContainer<int> d;
+    // d = c;
+    // d.show();
+
     std::cout << '\n';
 
     return EXIT_SUCCESS;

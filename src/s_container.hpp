@@ -9,7 +9,7 @@ public:
     SequentalContainer() : m_size{0}
     {
         m_arr = new T[0];
-        // std::cout << "Sequental container is made\n";
+        // std::cout << "Sequental container is made by ordinary constructor\n";
     }
     ~SequentalContainer() 
     {
@@ -21,25 +21,26 @@ public:
     SequentalContainer(const SequentalContainer& other) 
     {
         m_arr = new T[other.m_size];
-        for (size_t i; i < other.m_size; ++i) 
+        for (size_t i = 0; i < other.m_size; ++i) 
         {
             m_arr[i] = other.m_arr[i];
         }
         m_size = other.m_size;
+        // std::cout << "Sequental container is made by copy constructor\n";
     }
     SequentalContainer& operator=(const SequentalContainer& other)
     {
         if (this != &other)
         {
-            if(m_arr == nullptr) return;
             delete[] m_arr;
             m_arr = new T[other.m_size];
-            for (size_t i; i < other.m_size; ++i) 
+            for (size_t i = 0; i < other.m_size; ++i) 
             {
                 m_arr[i] = other.m_arr[i];
             }
             m_size = other.m_size;
         }
+        // std::cout << "Copy assignment operator\n";
         return *this;
     }
 
